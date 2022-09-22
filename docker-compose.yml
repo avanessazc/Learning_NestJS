@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  alpine_c:
+    # image: alpine:latest
+    build:
+      context: ./
+    container_name: alpine_c
+    volumes:
+      - ./data:/var/opt
+    command: tail -f /dev/null
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    networks:
+      - myContainerNet
+
+networks:
+  myContainerNet:
+    driver: bridge
